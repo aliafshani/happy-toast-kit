@@ -1,0 +1,26 @@
+{
+  "name": "happy-toast-kit",
+  "version": "1.0.8",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "toast.css"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "toast",
+    "react",
+    "notification",
+    "kit"
+  ],
+  "author": "aliwsh",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
