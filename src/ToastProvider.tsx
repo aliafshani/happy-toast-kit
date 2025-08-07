@@ -8,10 +8,11 @@ interface Toast {
   id: number;
   message: string;
   type?: ToastType;
+  className?: string
 }
 
 interface ToastContextType {
-  showToast: (message: string, type?: ToastType) => void;
+  showToast: (message: string, type: ToastType, className?: string) => void;
 }
 
 export const ToastContext = createContext<ToastContextType | undefined>(undefined);
@@ -19,9 +20,9 @@ export const ToastContext = createContext<ToastContextType | undefined>(undefine
 export const ToastProvider = ({ children }: { children: ReactNode }) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const showToast = (message: string, type: ToastType = 'info') => {
+  const showToast = (message: string, type: ToastType = 'info', className = "") => {
     const id = Date.now();
-    setToasts((prev) => [...prev, { id, message, type }]);
+    setToasts((prev) => [...prev, { id, message, type, className }]);
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
     }, 5000);
@@ -31,7 +32,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
     <ToastContext.Provider value={{ showToast }}>
       <div className="toast-container">
         {toasts.map((t) => (
-          <div key={t.id} className={`toast ${t.type}`}>
+          <div key={t.id} className={`${t.className} ${t.type}`}>
             {t.message}
           </div>
         ))}
