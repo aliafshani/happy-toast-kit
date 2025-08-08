@@ -25,14 +25,14 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
     setToasts((prev) => [...prev, { id, message, type, className }]);
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, 5000);
+    }, 3000);
   };
 
   return (
     <ToastContext.Provider value={{ showToast }}>
       <div className="toast-container">
         {toasts.map((t) => (
-          <div key={t.id} className={`${t.className} ${t.type}`}>
+          <div key={t.id} className={`${t.className} toast ${t.type}`}>
             {t.message}
           </div>
         ))}
